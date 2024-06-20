@@ -7,9 +7,13 @@ router.get('/', (req, res) => {
         return res.redirect('/');
     }
 
-    db.query('SELECT Candidates.name, COUNT(Votes.candidate_id) AS vote_count FROM Votes JOIN Candidates ON Votes.candidate_id = Candidates.candidate_id GROUP BY Votes.candidate_id', (err, results) => {
+    db.query('SELECT Candidates.name, Candidates.party, COUNT(Votes.candidate_id) AS vote_count FROM Votes JOIN Candidates ON Votes.candidate_id = Candidates.candidate_id GROUP BY Votes.candidate_id ORDER BY vote_count DESC', (err, results) => {
         if (err) throw err;
-        res.render('stats', { results });
+
+        // Find the candidate with the maximum vote count
+        const maxVoteCandidate = results.length > 0 ? results[0] : null;
+
+        res.render('stats', { results, maxVoteCandidate });
     });
 });
 

@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Stats Page</title>
-        <link rel="stylesheet" type="text/css" href="../public/style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats Page</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
 <body>
     <h2>Voting Stats</h2>
     <hr>
+
+    <% if (maxVoteCandidate) { %>
+        <h3>Top Candidate</h3>
+        <p><strong>Name:</strong> <%= maxVoteCandidate.name %></p>
+        <p><strong>Party:</strong> <%= maxVoteCandidate.party %></p>
+        <p><strong>Votes:</strong> <%= maxVoteCandidate.vote_count %></p>
+        <hr>
+    <% } %>
+
     <table>
         <tr>
             <th>Candidate</th>
+            <th>Party</th>
             <th>Votes</th>
         </tr>
         <% results.forEach(result => { %>
-        <tr>
-            <td><%= result.name %></td>
-            <td><%= result.vote_count %></td>
-        </tr>
+            <tr>
+                <td><%= result.name %></td>
+                <td><%= result.party %></td>
+                <td><%= result.vote_count %></td>
+            </tr>
         <% }); %>
     </table>
 </body>
