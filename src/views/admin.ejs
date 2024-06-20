@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Page</title>
+        <!-- <link rel="stylesheet"  type="text/css"  href="../public/style.css"> -->
+        <style>
+            .background-container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url(./images/ec3.avif);
+                background-repeat: no-repeat;
+                background-position: center;
+                opacity: 0.5;
+                z-index: -1; 
+            }
+
+            h2{
+                color: #570202;
+                text-align: center;
+            }
+            form {
+                margin: 30px auto;
+                width: 60%;
+            }
+
+            input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 60%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: #edecec;
+    text-align: center;
+    
+}
+            
+            label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+                font-size: larger;
+            }
+            
+            input[type="submit"] {
+                padding: 10px 15px;
+                background-color: #007bff;
+                border: none;
+                color: white;
+                cursor: pointer;
+            }
+            
+            input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+            .loginpage{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+<body class="background-container">
+    <h2>Admin Page</h2>
+
+    <!-- Form to register a voter -->
+    <form  class="loginpage" action="/admin/register/voter" method="post">
+        <h3>Register Voter</h3>
+        <label for="voter_name">Name:</label>
+        <input type="text" id="voter_name" name="name" required><br><br>
+        <label for="voter_password">Voter Id:</label>
+        <input type="password" id="voter_password" name="password" required><br><br>
+        <input type="submit" value="Register Voter">
+    </form>
+
+    <!-- Form to register a candidate -->
+    <form  class="loginpage" action="/admin/register/candidate" method="post">
+        <h3>Register Candidate</h3>
+        <label for="candidate_name">Name:</label>
+        <input type="text" id="candidate_name" name="name" required><br><br>
+        <label for="candidate_party">Party:</label>
+        <input type="text" id="candidate_party" name="party" required><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+        <input type="submit" value="Register Candidate">
+    </form>
+
+    <br><br>
+    <a href="/stats">View Voting Stats</a>
+</body>
+</html>

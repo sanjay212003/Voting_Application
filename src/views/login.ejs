@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Page</title>
+        <!-- <link rel="stylesheet" type="text/css" href="/src/public/style.css"> -->
+        <style>
+            .background-container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url(./images/evm2.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                opacity: 0.5;
+                z-index: -1; 
+            }
+
+            h2{
+                color: #570202;
+                text-align: center;
+            }
+            form {
+                margin: 30px auto;
+                width: 60%;
+            }
+
+            input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 60%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: #edecec;
+    text-align: center;
+    
+}
+            
+            label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+                font-size: larger;
+            }
+            
+            input[type="submit"] {
+                padding: 10px 15px;
+                background-color: #007bff;
+                border: none;
+                color: white;
+                cursor: pointer;
+            }
+            
+            input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+            .loginpage{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    
+    </head>
+<body id="login_body" class="background-container">
+    <h2>Login</h2>
+    <hr>
+    <form action="/login" method="post">
+        <div class="loginpage">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password/Voter Id:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="admin">Admin</option>
+            <option value="voter">Voter</option>
+        </select><br><br>
+        </div>
+        <input class="button"  type="submit" value="Login">
+    </form>
+</body>
+</html>

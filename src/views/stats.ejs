@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stats Page</title>
+        <link rel="stylesheet" type="text/css" href="../public/style.css">
+    </head>
+<body>
+    <h2>Voting Stats</h2>
+    <hr>
+    <table>
+        <tr>
+            <th>Candidate</th>
+            <th>Votes</th>
+        </tr>
+        <% results.forEach(result => { %>
+        <tr>
+            <td><%= result.name %></td>
+            <td><%= result.vote_count %></td>
+        </tr>
+        <% }); %>
+    </table>
+</body>
+</html>

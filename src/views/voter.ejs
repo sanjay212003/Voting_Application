@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voter Page</title>
+
+    <style>
+            h2{
+                color: #570202;
+                text-align: center;
+            }
+            form {
+                margin: 30px auto;
+                width: 60%;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+                font-size: larger;
+            }
+            
+            input[type="submit"] {
+                padding: 10px 15px;
+                background-color: #007bff;
+                border: none;
+                color: white;
+                cursor: pointer;
+            }
+            
+            input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+        </style>
+   
+</head>
+<body>
+    <h2>Vote for Your Candidate</h2>
+    <form action="/voter/vote" method="post">
+        <% candidates.forEach(candidate => { %>
+            <input type="radio" id="candidate<%= candidate.candidate_id %>" name="candidate" value="<%= candidate.candidate_id %>">
+            <label for="candidate<%= candidate.candidate_id %>"><%= candidate.name %> (<%= candidate.party %>)</label><br>
+        <% }); %>
+        <br>
+        <input type="submit" value="Vote">
+    </form>
+</body>
+</html>
