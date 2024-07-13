@@ -12,8 +12,7 @@ const db = require('./db');
 // Use body-parser middleware for parsing URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'src', 'public')));
+
 
 // Use express-session middleware for session management
 app.use(session({

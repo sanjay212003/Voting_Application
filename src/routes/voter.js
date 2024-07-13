@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../db');
+const path = require('path');
 
 router.get('/', (req, res) => {
     if (!req.session.voter_id) {
@@ -32,7 +33,7 @@ router.post('/vote', (req, res) => {
 
         const candidateAge = results[0].age;
         if (candidateAge <= 30) {
-            return res.status(400).send('Candidate is not eligible for voting.');
+            return res.render('message',{message:"CANDIDATE IS NOT ELIGIBLE FOR VOTING!!!"})
         }
 
         // Proceed with registering the vote
@@ -41,7 +42,7 @@ router.post('/vote', (req, res) => {
 
             db.query('UPDATE Voters SET has_voted = 1 WHERE voter_id = ?', [voter_id], (err, result) => {
                 if (err) throw err;
-                res.send('Vote cast successfully!');
+                res.render('message',{message:"VOTE CASTED SUCCESSFULLY 👍!!!"})
             });
         });
     });

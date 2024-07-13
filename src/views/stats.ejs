@@ -5,32 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stats Page</title>
     <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            color: white;
+            align-items: center;
+        }
+        
+        h1 {
+            color: rgb(249, 50, 50);
+            text-align: center;
+            font-size: 50px;
+        }
+        
+        #top_candidate {
+            width: 50%;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #222;
+        }
+        
+        #top_candidate h3 {
+            font-size: xx-large;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        #top_candidate p {
+            margin: 5px 0;
+            text-align: left;
+            font-size: x-large;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-bottom: 30px;
+            background-color: #333;
+            color: white;
+        }
+        
+        th, td {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: left;
+            font-size: larger;
+        }
+        
+        th {
+            background-color: #444;
+            font-size: xx-large;
+        }
+        
+        tr:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
-    <h2>Voting Stats</h2>
+    <h1>Voting Stats</h1>
     <hr>
-
-    <% if (maxVoteCandidate) { %>
-        <h3>Top Candidate</h3>
-        <p><strong>Name:</strong> <%= maxVoteCandidate.name %></p>
-        <p><strong>Party:</strong> <%= maxVoteCandidate.party %></p>
-        <p><strong>Votes:</strong> <%= maxVoteCandidate.vote_count %></p>
-        <hr>
-    <% } %>
+    
+    <div id="top_candidate">
+        <% if (maxVoteCandidate) { %>
+            <h3>Top Candidate</h3>
+            <p><strong>Name:</strong> <%= maxVoteCandidate.name %></p>
+            <p><strong>Party:</strong> <%= maxVoteCandidate.party %></p>
+            <p><strong>Votes:</strong> <%= maxVoteCandidate.vote_count %></p>
+        <% } %>
+    </div>
 
     <table>
-        <tr>
-            <th>Candidate</th>
-            <th>Party</th>
-            <th>Votes</th>
-        </tr>
-        <% results.forEach(result => { %>
+        <thead>
             <tr>
-                <td><%= result.name %></td>
-                <td><%= result.party %></td>
-                <td><%= result.vote_count %></td>
+                <th>Candidate</th>
+                <th>Party</th>
+                <th>Votes</th>
             </tr>
-        <% }); %>
+        </thead>
+        <tbody>
+            <% results.forEach(result => { %>
+                <tr>
+                    <td><%= result.name %></td>
+                    <td><%= result.party %></td>
+                    <td><%= result.vote_count %></td>
+                </tr>
+            <% }); %>
+        </tbody>
     </table>
 </body>
 </html>

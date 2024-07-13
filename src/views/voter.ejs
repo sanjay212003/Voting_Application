@@ -5,14 +5,59 @@
     <title>Voter Page</title>
 
     <style>
+            body{
+              background-color: rgb(3, 48, 14); 
+            }
             h2{
-                color: #570202;
+                color: #f3ebeb;
                 text-align: center;
+                font-size: 40px;
+                text-decoration: underline;
             }
             form {
                 margin: 30px auto;
                 width: 60%;
+                
             }
+
+            table{
+                border-color: black;
+                width: 100%;
+                margin-top: 50px;
+                text-align: center;
+                border-collapse: collapse;
+                border: 1px solid #f99f9f;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 20px gray;
+                border-style: groove;
+            }
+
+            th, td {
+                padding: 15px;
+                text-align: center;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+            }
+
+            th{
+                background-color: aliceblue;
+                font-size: larger;
+                font-family: sans-serif;
+            }
+
+            td{
+                font-size: large;
+            }
+            tr:hover{
+                    background-color: #e6efa9;
+            }
+
+            #party{
+                font-size: larger;
+            }
+            
+            
 
             label {
                 display: block;
@@ -22,28 +67,53 @@
             }
             
             input[type="submit"] {
-                padding: 10px 15px;
-                background-color: #007bff;
+                padding: 10px 20px;
+                background-color: #960808;
                 border: none;
                 color: white;
                 cursor: pointer;
+                border-radius: 5px;
+                font-size: x-large;
+                position: relative;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                left: 90%;
+                
             }
             
             input[type="submit"]:hover {
-                background-color: #0056b3;
+                box-shadow: 0 0  30px rgb(247, 114, 114);
             }
+            
         </style>
    
 </head>
 <body>
     <h2>Vote for Your Candidate</h2>
     <form action="/voter/vote" method="post">
-        <% candidates.forEach(candidate => { %>
-            <input type="radio" id="candidate<%= candidate.candidate_id %>" name="candidate" value="<%= candidate.candidate_id %>">
-            <label for="candidate<%= candidate.candidate_id %>"><%= candidate.name %> (<%= candidate.party %>)</label><br>
-        <% }); %>
-        <br>
-        <input type="submit" value="Vote">
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Candidate Name</th>
+                    <th>Party</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% candidates.forEach(candidate => { %>
+                <tr>
+                    <td> <input type="radio" id="candidate<%= candidate.candidate_id %>" name="candidate" value="<%= candidate.candidate_id %>"></td>
+                    <td> <label for="candidate<%= candidate.candidate_id %>"><%= candidate.name %> </label></td>
+                    <td > <label for="candidate<%= candidate.candidate_id %>"><%= candidate.party %></label> </td>
+                </tr>
+                <% }); %>
+               
+            </tbody>
+        </table>
+        
+           
+       
+        <input id="vote" type="submit" value="Vote">
     </form>
 </body>
 </html>

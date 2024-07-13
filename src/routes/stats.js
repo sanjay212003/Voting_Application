@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
         return res.redirect('/');
     }
 
-    db.query('SELECT Candidates.name, Candidates.party, COUNT(Votes.candidate_id) AS vote_count FROM Votes JOIN Candidates ON Votes.candidate_id = Candidates.candidate_id GROUP BY Votes.candidate_id ORDER BY vote_count DESC', (err, results) => {
+    db.query('SELECT Candidates.name, Candidates.party, COUNT(Votes.candidate_id) AS vote_count FROM candidates LEFT JOIN votes ON Votes.candidate_id = Candidates.candidate_id GROUP BY candidates.candidate_id ORDER BY vote_count DESC', (err, results) => {
         if (err) throw err;
 
         // Find the candidate with the maximum vote count

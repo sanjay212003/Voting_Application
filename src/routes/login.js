@@ -20,11 +20,11 @@ router.post('/login', (req, res) => {
         db.query('SELECT * FROM Admin WHERE username = ?', [username], (err, results) => {
             if (err) {
                 console.error('Database error:', err);
-                return res.status(500).send('Internal server error');
+                return res.render('message',{message:"INVALID USERNAME OR PASSWORD!!!☠️"});
             }
 
             if (results.length === 0) {
-                return res.status(401).send('Invalid username or password');
+                res.render('message',{message:"INVALID USERNAME OR PASSWORD!!!☠️"});
             }
 
             const admin = results[0];
@@ -32,7 +32,7 @@ router.post('/login', (req, res) => {
                 req.session.admin_id = admin.admin_id;
                 res.redirect('/admin');
             } else {
-                res.status(401).send('Invalid username or password');
+                res.render('message',{message:"INVALID USERNAME OR PASSWORD!!!☠️"});
             }
         });
     } else if (role === 'voter') {
@@ -43,7 +43,7 @@ router.post('/login', (req, res) => {
             }
 
             if (results.length === 0) {
-                return res.status(401).send('Invalid username or password');
+                return res.render('message',{message:"INVALID USERNAME OR PASSWORD🏴‍☠️!!!"})
             }
 
             const voter = results[0];
@@ -55,12 +55,12 @@ router.post('/login', (req, res) => {
             if (bcrypt.compareSync(password, voter.voter_id)) {
                 req.session.voter_id = voter.voter_id;
                 if (voter.has_voted) {
-                    res.send('You have already voted.');
+                    res.render('message',{message:"YOU HAVE ALREADY VOTED🤫 !!!"});
                 } else {
                     res.redirect('/voter');
                 }
             } else {
-                res.status(401).send('Invalid username or password');
+                res.render('message',{message:"INVALID USERNAME OR PASSWORD!!!"});
             }
         });
     } else {
