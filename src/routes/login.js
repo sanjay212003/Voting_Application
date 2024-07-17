@@ -12,9 +12,6 @@ router.get('/', (req, res) => {
 router.post('/login', (req, res) => {
     const { username, password, role } = req.body;
 
-    if (!username || !password || !role) {
-        return res.status(400).send('All fields are required');
-    }
 
     if (role === 'admin') {
         db.query('SELECT * FROM Admin WHERE username = ?', [username], (err, results) => {
